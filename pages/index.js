@@ -1,6 +1,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import classNames from "classnames";
 
 const questions = [
   "Você já ouviu falar de Inteligência Artificial (IA)?",
@@ -74,7 +75,12 @@ export default function Home() {
                     <button
                       type="button"
                       key={option.value}
-                      className={\`py-2 px-4 rounded-lg border \${answers[index] === option.value ? 'bg-blue-500 text-white' : 'bg-gray-100 hover:bg-blue-100'}\`}
+                      className={classNames(
+                        "py-2 px-4 rounded-lg border",
+                        answers[index] === option.value
+                          ? "bg-blue-500 text-white"
+                          : "bg-gray-100 hover:bg-blue-100"
+                      )}
                       onClick={() => handleOptionChange(index, option.value)}
                     >
                       {option.label}
@@ -96,7 +102,7 @@ export default function Home() {
             <div className="w-full bg-gray-200 rounded-full h-6 mb-4">
               <div
                 className="bg-green-500 h-6 rounded-full transition-all duration-500"
-                style={{ width: \`\${(totalScore / 45) * 100}%\` }}
+                style={{ width: `${(totalScore / 45) * 100}%` }}
               ></div>
             </div>
             <p className="text-xl font-semibold mb-4">Nível: {getResultText(totalScore)}</p>
