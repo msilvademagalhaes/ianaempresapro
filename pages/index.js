@@ -58,10 +58,10 @@ export default function Home() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-r from-blue-50 to-blue-100 flex flex-col">
-      <header className="bg-blue-600 text-white p-4 flex justify-between items-center">
-        <h1 className="text-xl font-bold">Score de Maturidade em IA</h1>
-        <Link href="/about" legacyBehavior><a className="hover:underline">Sobre</a></Link>
+    <div className="min-h-screen bg-gradient-to-r from-indigo-100 via-purple-100 to-pink-100 flex flex-col">
+      <header className="bg-indigo-700 text-white p-4 flex justify-between items-center">
+        <h1 className="text-4xl font-extrabold">Score de Maturidade em IA</h1>
+        <Link href="/about" legacyBehavior><a className="hover:underline text-lg">Sobre</a></Link>
       </header>
 
       <main className="flex-grow flex flex-col items-center p-6">
@@ -69,17 +69,17 @@ export default function Home() {
           <form onSubmit={handleSubmit} className="w-full max-w-3xl space-y-6">
             {questions.map((question, index) => (
               <div key={index} className="bg-white p-4 rounded-lg shadow">
-                <p className="font-medium mb-4">{index + 1}. {question}</p>
+                <p className="text-lg font-semibold text-purple-700 mb-4">{index + 1}. {question}</p>
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                   {options.map((option) => (
                     <button
                       type="button"
                       key={option.value}
                       className={classNames(
-                        "py-2 px-4 rounded-lg border",
+                        "py-2 px-4 rounded-lg border text-center font-medium transition focus:outline-none",
                         answers[index] === option.value
-                          ? "bg-blue-500 text-white"
-                          : "bg-gray-100 hover:bg-blue-100"
+                          ? "bg-indigo-500 text-white border-indigo-700 shadow-lg"
+                          : "bg-gray-100 hover:bg-blue-100 border-gray-300"
                       )}
                       onClick={() => handleOptionChange(index, option.value)}
                     >
@@ -91,21 +91,21 @@ export default function Home() {
             ))}
             <button
               type="submit"
-              className="w-full bg-blue-600 text-white py-3 rounded-lg font-semibold hover:bg-blue-700 transition"
+              className="w-full bg-indigo-700 text-white py-3 rounded-lg text-xl font-bold hover:bg-indigo-800 transition"
             >
               Calcular Score
             </button>
           </form>
         ) : (
           <div className="bg-white p-6 rounded-lg shadow w-full max-w-xl text-center">
-            <h2 className="text-2xl font-bold mb-4">Seu Score: {totalScore} / 45</h2>
+            <h2 className="text-3xl font-bold text-indigo-700 mb-4">Seu Score: {totalScore} / 45</h2>
             <div className="w-full bg-gray-200 rounded-full h-6 mb-4">
               <div
                 className="bg-green-500 h-6 rounded-full transition-all duration-500"
                 style={{ width: `${(totalScore / 45) * 100}%` }}
               ></div>
             </div>
-            <p className="text-xl font-semibold mb-4">Nível: {getResultText(totalScore)}</p>
+            <p className="text-2xl font-semibold text-purple-700 mb-4">Nível: {getResultText(totalScore)}</p>
             <p className="text-gray-700 mb-6">{getResultMessage(totalScore)}</p>
             <button
               className="mt-6 bg-gray-600 text-white py-2 px-4 rounded hover:bg-gray-700"
